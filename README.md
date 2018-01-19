@@ -2,7 +2,7 @@
 Scripts for manipulating the NOAA GHCN data set to be in desirable format with fields including station name, county, state, date, temperature, geom
 
 ## Files needed:
-* GHCN list of station IDs and locations. Data [here]:ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
+* GHCN list of station IDs and locations. Data [here](ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt "GHCN station list")
 * GHCN station daily temperature readings - one file per year. Data [here](ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/)
 
 ## Software needed:
