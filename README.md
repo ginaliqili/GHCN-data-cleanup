@@ -15,7 +15,7 @@ Scripts for manipulating the [NOAA GHCN data set](https://www.ncdc.noaa.gov/data
 3. Import GHCN station daily readings into new Postgres table called `station_temp_data_only`. Fields should be `station_id`, `date`, `obs_type`, `value`, `test1`, `test2`, `test3`, `test4`. Ultimately, we will only care about the first 4 columns.
     - Use the \COPY command in the psql command line for each file.
         - i.e. `\COPY state_selection.station_temp_data_only FROM 'C:\Users\User\Documents\Research\State Selection\2018.csv' CSV HEADER;`
-    - Delete the unnecessary columns named `test*` (these are the ele
+    - Delete the unnecessary columns named `test*` (these are metadata such as measurement, quality, and source flags, as well as observation times. For a breakdown of the columns see [this](./ghcn-daily-by_year-format.txt))
         - i.e. `ALTER TABLE state_selection.station_temp_data_only DROP COLUMN test1, test2, test3, test4`
     - Delete unnecessary rows ()
 
