@@ -4,7 +4,7 @@ Scripts for manipulating the [NOAA GHCN data set](https://www.ncdc.noaa.gov/data
 ## Files needed:
 * GHCN list of station IDs and locations. <ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt>
 * GHCN station daily readings - one file per year. <ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/>
-* [US Census county boundaries shapefile] (https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html) with 500k resolution
+* [US Census county boundaries shapefile](https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html) with 500k resolution
 
 ## Software needed:
 * Postgres installation (with PostGIS extension) and pgAdminIII client
