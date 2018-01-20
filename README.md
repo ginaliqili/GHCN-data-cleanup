@@ -10,10 +10,13 @@ Scripts for manipulating the [NOAA GHCN data set](https://www.ncdc.noaa.gov/data
 * Python and Python IDE (such as PyCharm community edition)
 
 ## Steps to take:
-1. Open the file with the GHCN list of station IDs and locations. Delete all non-US stations (IDs that do not begin with "US") and all but the first 3 columns (ID, lat, long).
+1. Open the file with the GHCN list of station IDs and locations. Delete all non-US stations (station IDs that do not begin with "US") and all but the first 3 columns (station ID, lat, long).
 2. Create Postgres table named `us_station_locations` with columns `station_id`, `latitute` and `longitude`. Import your data into this table.
-3. Import GHCN station daily readings into new Psotgres table called `station_temp_data_only`. Fields should be `station_id`, `date`, `obs_type`, `value`, `test1`, `test2`, `test3`, `test4`. Ultimately, we will only care about the first 4 columns.
+3. Import GHCN station daily readings into new Postgres table called `station_temp_data_only`. Fields should be `station_id`, `date`, `obs_type`, `value`, `test1`, `test2`, `test3`, `test4`. Ultimately, we will only care about the first 4 columns.
     - Use the \COPY command in the psql command line for each file.
-    - i.e. `\COPY state_selection.station_temp_data_only FROM 'C:\Users\User\Documents\Research\State Selection\2018.csv' CSV HEADER;`
+        - i.e. `\COPY state_selection.station_temp_data_only FROM 'C:\Users\User\Documents\Research\State Selection\2018.csv' CSV HEADER;`
+    - Delete the unnecessary columns named `test*` (these are the ele
+        - i.e. `ALTER TABLE state_selection.station_temp_data_only DROP COLUMN test1, test2, test3, test4`
+    - Delete unnecessary rows ()
 
 
