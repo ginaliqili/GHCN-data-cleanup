@@ -25,7 +25,14 @@ Scripts for manipulating the [NOAA GHCN data set](https://www.ncdc.noaa.gov/data
     - Create new table without unnecessary rows (only interested in TMIN and TMAX)
         - Faster and more efficient to create a new table rather than deleting when it comes to specific rows
         - i.e. `CREATE table state_selection.station_temp_data_only2 AS (SELECT * FROM state_selection.station_temp_data_only where obs_type='TMIN' or obs_type='TMAX')`
-5. Run `create_county_temp_table.py` and pass in `[schema_name].[us_station_locations table]`, `[schema_name].[us_counties table name]`, `[name of new output table]` as the arguments
+5. Create new table `us_stations_counties` with fields `statefp`, `county`, `obs_type`, `value`, and `date`. All types are `character varying` except for `value` which is a `real` and `date` which is a `date`.
+6. Create indexes to speed up querying in next step:
+    - `CREATE INDEX station_temp_data_only2_gix ON state_selection.station_temp_data_only2 USING GIST (geom)`
+    - `CREATE INDEX us_counties_gix ON state_selection.us_counties USING GIST (geom)`
+    - `CREATE INDEX us_station_locations_gix ON state_selection.us_station_locations USING GIST (geom)`
+    - Create index on state_selection.station_temp_data_only2 column `station_id` using pgAdmin
+
+7. Run `create_county_temp_table.py` and pass in `[schema_name].[us_station_locations table]`, `[schema_name].[us_counties table name]`, `[name of new output table]` as the arguments
     - This will look at each county boundary and see which stations are contained within it by assessing the lat/long data in the station location table. If it is contained, a new row is added to the new table. This is effectively identifying the state and county for each station, including the temperature and date information, and outputting it into a new PostGIS table.
     - i.e. Run `assign_county_and_state_to_station.py "state_selection.us_station_locations" "state_selection.us_counties" "us_stations_counties"`
 
